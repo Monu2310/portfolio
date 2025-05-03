@@ -189,4 +189,91 @@ $(function(){
   $('a').hover(cursorhover,cursor);
   $('.navigation-close').hover(cursorhover,cursor);
 
+  // Enhanced cursor effects with Anime.js
+  if (typeof anime !== 'undefined') {
+    // Add active class on hover for styled elements
+    $('button, .button a, .portfolio-image, .service').hover(
+      function() {
+        $cursor.addClass('active');
+        
+        // Create ripple effect on hover
+        anime({
+          targets: $cursor[0],
+          boxShadow: [
+            '0 0 0 rgba(62, 89, 223, 0.5)',
+            '0 0 25px rgba(62, 89, 223, 0.5)'
+          ],
+          duration: 800,
+          easing: 'easeOutExpo'
+        });
+      },
+      function() {
+        $cursor.removeClass('active');
+        
+        // Remove ripple effect
+        anime({
+          targets: $cursor[0],
+          boxShadow: '0 0 0 rgba(62, 89, 223, 0)',
+          duration: 600,
+          easing: 'easeOutCubic'
+        });
+      }
+    );
+    
+    // Create click ripple effect
+    $(document).on('click', function(e) {
+      // Create a small dot animation at click position
+      const clickFeedback = document.createElement('div');
+      clickFeedback.classList.add('click-feedback');
+      clickFeedback.style.left = e.clientX + 'px';
+      clickFeedback.style.top = e.clientY + 'px';
+      document.body.appendChild(clickFeedback);
+      
+      anime({
+        targets: clickFeedback,
+        scale: [0, 1.5],
+        opacity: [1, 0],
+        easing: 'easeOutExpo',
+        duration: 600,
+        complete: function() {
+          document.body.removeChild(clickFeedback);
+        }
+      });
+    });
+  }
 })
+
+// Wait for all animations to be loaded before initializing IntersectionObserver
+window.addEventListener('load', function() {
+  // Add scroll-activated classes when elements come into view
+  const animationObservers = {
+    fadeIn: new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 })
+  };
+  
+  // Find and observe elements with animation classes
+  document.querySelectorAll('[data-animation]').forEach(element => {
+    animationObservers.fadeIn.observe(element);
+  });
+  
+  // Initialize scroll-triggered parallax
+  const parallaxElements = document.querySelectorAll('.parallax-element');
+  window.addEventListener('scroll', function() {
+    const scrolled = window.pageYOffset;
+    
+    parallaxElements.forEach(element => {
+      const parent = element.closest('.parallax-container');
+      if (!parent) return;
+      
+      const speed = element.dataset.parallaxSpeed || 0.3;
+      const yPos = -(scrolled * speed);
+      element.style.transform = `translate3d(0, ${yPos}px, 0)`;
+    });
+  });
+});

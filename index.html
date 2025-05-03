@@ -6,9 +6,59 @@
     <title>Mayank Monu - Personal Portfolio</title>
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <!-- Added click effects CSS -->
+    <link rel="stylesheet" href="css/click-effects.css">
+    <style>
+        /* CSS Variables for theme colors */
+        :root {
+            --color-primary: #ff2a75;
+            --color-secondary: #f44336;
+            --color-tertiary: #ff9e80;
+            --text-color: #ffffff;
+            --background-color: #1f1f1f;
+            --loader-color: #ff2a75;
+            --loader-secondary-color: #f44336;
+        }
+        
+        /* Page transition overlay */
+        .page-transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-primary);
+            transform-origin: right;
+            z-index: 9999;
+            pointer-events: none;
+        }
+        
+        /* Theme transition overlay */
+        .theme-transition-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--color-primary);
+            opacity: 0;
+            z-index: 9998;
+            pointer-events: none;
+        }
+        
+        /* Active theme indicator */
+        .colors a.active-theme {
+            transform: scale(1.2);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+    <script src="js/libs/anime.min.js"></script>
 </head>
 <body>
+
+    <div class="scroll-indicator"></div>
 
     <div id="all">
         <div class="cursor"></div>
@@ -30,10 +80,10 @@
                 <span class="close-second"></span>
             </div>
             <div class="navigation-links">
-                <a href="#" data-text="HOME" id="home-link" >HOME</a>
-                <a href="#" data-text="ABOUT" id="about-link" >ABOUT</a>
-                <a href="#" data-text="PORTFOLIO" id="portfolio-link" >PORTFOLIO</a>
-                <a href="#" data-text="CONTACT" id="contact-link" >CONTACT</a>
+                <a href="#home" data-text="HOME" id="home-link" >HOME</a>
+                <a href="#about" data-text="ABOUT" id="about-link" >ABOUT</a>
+                <a href="#portfolio" data-text="PORTFOLIO" id="portfolio-link" >PORTFOLIO</a>
+                <a href="#contact" data-text="CONTACT" id="contact-link" >CONTACT</a>
             </div>
         </div>
         
@@ -46,39 +96,37 @@
             </div>
         </div>
         
-        <div id="header">
-            <div id="particles"></div>
+        <div id="header" class="section-container" data-section-id="home">
+            <div id="particles" data-framer-animate="fade"></div>
              
-            <div class="social-media-links">
-
+            <div class="social-media-links" data-animation="slideRight">
                <a href="https://www.facebook.com/mayank.monu2310/" target="_blank"><img src="images/facebook logo.png" class="social-media" alt="facebook-logo"></a>
                <a href="https://www.linkedin.com/in/mayank-monu-aa2333231/" target="_blank"><img src="images/linkedin logo.png" class="social-media" alt="linkedin-logo"></a>
                <a href="https://x.com/Mayankm30040263" target="_blank"><img src="images/twitter logo.png" class="social-media" alt="twitter-logo"></a>
-
             </div>
            
-            <div class="header-content">
+            <div class="header-content" data-animation="fadeIn">
                 <div class="header-content-box">
-                <div class="firstline"><span class="color">Mayank </span>Monu </div>
-                <div class="secondline">
+                <div class="firstline" data-framer-animate="fadeUp" data-framer-delay="200"><span class="color">Mayank </span>Monu </div>
+                <div class="secondline" data-framer-animate="fadeUp" data-framer-delay="400">
                 I'm a
             <span class="txt-rotate color" data-period="1200"data-rotate='[ " Developer.", " Student.", " Freelancer." ]'></span>
             <span class="slash">|</span>
         </div>
-                    <div class="contact">
+                    <div class="contact" data-framer-animate="fadeUp" data-framer-delay="600">
                 <a href="Mailto:mayank.monu2310@gmail.com" target="_blank"><img src="images/mail.png" alt="email-pic" class="contactpic"></a>
                 <a href="Tel:7488020965" target="_blank"><img src="images/call.png" alt="phone-pic" class="contactpic"></a>
                     </div>    
             </div>
             </div>
             
-            <div class="header-image">
-            <img src="images/man.jpg" alt="logo">
+            <div class="header-image parallax-container" data-animation="slideLeft" data-framer-animate="fadeLeft" data-framer-delay="300">
+            <img src="images/man.jpg" alt="logo" class="parallax-element">
             </div>
             
         </div>
        
-        <div id="about">
+        <div id="about" class="section-container" data-section-id="about">
             <div class="color-changer">
             <div class="color-panel">
                 <img src="images/gear.png" alt="">
@@ -111,12 +159,12 @@
             </div>
             
             <div id="about-content">
-                <div class="about-header">
+                <div class="about-header" data-animation="fadeIn">
                     About <span class="color">Me</span>
                     <span class ="header-caption">Get to Know <span class="color"> me.</span></span>
                 </div>
                 <div class="about-main">
-            <div class="about-first-paragraph wow">
+            <div class="about-first-paragraph wow" data-animation="slideRight" data-framer-animate="fadeRight" data-framer-delay="200">
 
                <span class="about-first-line">
                     I'm creative 
@@ -125,11 +173,11 @@
                      <br>
                <span class="about-second-line"> Aspiring Frontend Developer | Student | Passionate About Crafting Engaging Web Experiences</span>
                <div class="cv">
-                <a href="cv.pdf" target="_blank"><button>Download <span class="colors">CV</span></button></a>
+                <a href="Mayank_Monu_CV.pdf" target="_blank"><button>Download <span class="colors">CV</span></button></a>
             </div>
             </div>
 
-            <div class="about-img">
+            <div class="about-img" data-animation="slideLeft" data-framer-animate="fadeLeft" data-framer-delay="200">
                 <img src="images/about.jpg" alt="Your Image">
             </div>
             </div>
@@ -168,12 +216,12 @@
                     </div>
                     </div>
             
-                    <div class="services-heading wow">
+                    <div class="services-heading wow" data-animation="fadeIn">
                         <span class="color">My</span> Services
                     </div>
             
-                    <div class="services-content">
-                           <div class="service-one service wow">
+                    <div class="services-content" data-framer-stagger-parent="true">
+                           <div class="service-one service wow" data-animation="serviceCard" data-framer-stagger-child data-framer-animate="fadeUp" data-framer-delay="100">
                                <div class="service-img">
                                <img src="images/coding.png" alt="service-one">
                                </div>
@@ -182,7 +230,7 @@
                                 <p>A proficient Frontend Developer.</p>
                                </div>
                            </div>
-                           <div class="service-two service wow">
+                           <div class="service-two service wow" data-animation="serviceCard" data-framer-stagger-child data-framer-animate="fadeUp" data-framer-delay="200">
                                <div class="service-img">
                                <img src="images/instagram.png" alt="service-two">
                                </div>
@@ -191,7 +239,7 @@
                                 <p>Paid and free Designing and Development.</p>
                                </div>
                            </div>
-                           <div class="service-three service wow">
+                           <div class="service-three service wow" data-animation="serviceCard" data-framer-stagger-child data-framer-animate="fadeUp" data-framer-delay="300">
                             <div class="service-img">
                                <img src="images/bulb.png" alt="service-three">
                             </div>
@@ -204,11 +252,11 @@
             </div>
          
             <div id="skills">
-                <div class="skills-header">
+                <div class="skills-header" data-animation="fadeIn">
                      My <span class="color"> Skills</span>
                 </div>
                 <div class="skills-content " style="text-align: center;">
-                    <div class="skill-html skill">
+                    <div class="skill-html skill" data-animation="progressBar">
                         <div class="skill-text">
                     <div class="html">
                         HTML/CSS
@@ -218,7 +266,7 @@
                  <div class="html-progress wow">95%</div>
                     </div>
                     </div>
-                    <div class="skill-html skill">
+                    <div class="skill-html skill" data-animation="progressBar">
                         <div class="skill-text">
                     <div class="html">
                       Javascript
@@ -228,7 +276,7 @@
                  <div class="js-progress wow">90%</div>
                     </div>
                     </div>
-                    <div class="skill-html skill">
+                    <div class="skill-html skill" data-animation="progressBar">
                         <div class="skill-text">
                     <div class="html">
                         Adobe Ps
@@ -238,7 +286,7 @@
                  <div class="adobe-progress wow">80%</div>
                     </div>
                     </div>
-                    <div class="skill-html skill">
+                    <div class="skill-html skill" data-animation="progressBar">
                         <div class="skill-text">
                     <div class="html">
                         Bootstrap
@@ -248,7 +296,7 @@
                  <div class="php-progress wow">85%</div>
                     </div>
                     </div>
-                    <div class="skill-html skill">
+                    <div class="skill-html skill" data-animation="progressBar">
                         <div class="skill-text">
                     <div class="html">
                         React.JS
@@ -258,7 +306,7 @@
                  <div class="jquery-progress wow">64%</div>
                     </div>
                     </div>
-                    <div class="skill-html skill">
+                    <div class="skill-html skill" data-animation="progressBar">
                         <div class="skill-text">
                     <div class="html">
                         Problem Solving
@@ -271,7 +319,7 @@
                 </div>
             </div>
         </div>
-        <div id="portfolio">
+        <div id="portfolio" class="section-container" data-section-id="portfolio">
             <div class="color-changer">
                 <div class="color-panel">
                     <img src="images/gear.png" alt="">
@@ -302,10 +350,10 @@
                     </div>
                 </div>
                 </div>
-            <div class="portfolio-header"> <span class="color"> My </span> Portfolio
+            <div class="portfolio-header" data-animation="fadeIn"> <span class="color"> My </span> Portfolio
             <span class ="header-caption"> Some Of My <span class="color"> Works</span></span></div>
-             <div id="portfolio-content">
-                 <div class="portfolio portfolio-first">
+             <div id="portfolio-content" data-framer-stagger-parent="true">
+                 <div class="portfolio portfolio-first" data-animation="portfolioItem" data-framer-stagger-child data-framer-animate="scaleUp" data-framer-delay="100">
                     <div class="portfolio-image">
                         <img src="images/portfolio-first.jpg" alt="portfolio-second">
                     </div>
@@ -315,7 +363,7 @@
                         <div class="button"><a href="https://weather-website-kohl.vercel.app/" target="_blank"><button><span class="index"> View Project<i class="gg-arrow-right"></i></span></button></a></div>
                     </div>
                 </div>
-                <div class="portfolio portfolio-second">
+                <div class="portfolio portfolio-second" data-animation="portfolioItem" data-framer-stagger-child data-framer-animate="scaleUp" data-framer-delay="200">
                     <div class="portfolio-image">
                        <img src="images/portfolio-second.jpg" alt="portfolio-first">
                     </div>
@@ -325,7 +373,7 @@
                         <div class="button"><a href="https://soda-pop-lake.vercel.app/" target="_blank"><button><span class="index"> View Project<i class="gg-arrow-right"></i></span></button></a></div>
                     </div>
                 </div>
-                <div class="portfolio portfolio-third">
+                <div class="portfolio portfolio-third" data-animation="portfolioItem" data-framer-stagger-child data-framer-animate="scaleUp" data-framer-delay="300">
                     <div class="portfolio-image">
                         <img src="images/portfolio-third.jpg" alt="portfolio-third">
                     </div>
@@ -335,7 +383,7 @@
                         <div class="button"><a href="https://mountains-slide-2310.vercel.app/" target="_blank"><button><span class="index"> View Project<i class="gg-arrow-right"></i></span></button></a></div>
                     </div>
                 </div>
-                <div class="portfolio portfolio-fourth">
+                <div class="portfolio portfolio-fourth" data-animation="portfolioItem" data-framer-stagger-child data-framer-animate="scaleUp" data-framer-delay="400">
                     <div class=" portfolio-image">
                         <img src="images/portfolio-fourth.jpg" alt="portfolio-fourth">
                     </div>
@@ -347,7 +395,7 @@
                 </div>
             </div>
         </div>
-        <div id="contact">
+        <div id="contact" class="section-container" data-section-id="contact">
           <div class="color-changer">
             <div class="color-panel">
                 <img src="images/gear.png" alt="">
@@ -378,10 +426,10 @@
                 </div>
             </div>
             </div>
-        <div class="contact-header">Contact <span class="color"> Me</span>
+        <div class="contact-header" data-animation="fadeIn">Contact <span class="color"> Me</span>
         <div class="contact-header-caption"> <span class="color"> Get</span> In Touch.</div></div>
         <div class="contact-content">
-             <div class="contact-form">
+             <div class="contact-form" data-animation="slideRight" data-framer-animate="fadeRight" data-framer-delay="200">
                  <div class="form-header">
                      Message Me
                  </div>
@@ -397,7 +445,7 @@
                
              </div>
             
-             <div class="contact-info">
+             <div class="contact-info" data-animation="slideLeft" data-framer-animate="fadeLeft" data-framer-delay="200">
                 <div class="contact-info-header">
                     Contact Info
                 </div>
@@ -437,8 +485,38 @@
     <script src="js/particles.js"></script>
     <script src="js/particles.min.js"></script>
     <script src="js/index.js"></script>
+    <script src="js/libs/framer-animations.js"></script>
+    <script src="js/scroll-animations.js"></script>
+    <script src="js/smooth-scroll.js"></script>
+    <script src="js/enhanced-particles.js"></script>
+    <!-- Add the page transitions script -->
+    <script src="js/page-transitions.js"></script>
+    <!-- Add the colors.js script -->
+    <script src="js/colors.js"></script>
     <script>
-  particlesJS("particles", {"particles":{"number":{"value":50,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#000000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
+  particlesJS("particles", {"particles":{"number":{"value":50,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#00000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
+
+  document.addEventListener('DOMContentLoaded', function() {
+      const scrollIndicator = document.querySelector('.scroll-indicator');
+      
+      window.addEventListener('scroll', function() {
+          const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+          const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          const scrolled = (winScroll / height) * 100;
+          
+          scrollIndicator.style.width = scrolled + '%';
+      });
+      
+      // Add interactive-element class to buttons and cards for enhanced hover effects
+      document.querySelectorAll('.button a button, .service, .cv button, #submit').forEach(element => {
+          element.classList.add('interactive-element');
+      });
+      
+      // Initialize sections for page transitions
+      document.querySelectorAll('.section-container').forEach(section => {
+          section.id = section.dataset.sectionId;
+      });
+  });
     </script>
 
 </body>
