@@ -87,10 +87,15 @@ function performPageTransition(fromSection, toSection) {
           // After animation completes, make sure target section remains visible
           toSection.style.opacity = 1;
           
-          // Update URL hash (without scrolling)
-          const scrollPosition = window.scrollY;
-          window.location.hash = toSection.id;
-          window.scrollTo(0, scrollPosition);
+          // Update URL hash without triggering scroll
+          if (history.replaceState) {
+            history.replaceState(null, null, '#' + toSection.id);
+          } else {
+            // Fallback for older browsers - prevent default scroll behavior
+            const scrollPosition = window.scrollY;
+            window.location.hash = toSection.id;
+            window.scrollTo(0, scrollPosition);
+          }
         }
       });
     }
@@ -222,6 +227,9 @@ function prepareNewSectionAnimations(section) {
 
 // Check if initial view has a hash and trigger appropriate section
 function checkInitialHash() {
+  // Prevent automatic scrolling during initialization
+  const originalScrollPosition = window.scrollY;
+  
   if (window.location.hash) {
     const targetId = window.location.hash.substring(1);
     const targetSection = document.getElementById(targetId);
@@ -250,6 +258,9 @@ function checkInitialHash() {
       
       // Prepare animations for target section
       prepareNewSectionAnimations(targetSection);
+      
+      // Restore scroll position to prevent unwanted scrolling
+      window.scrollTo(0, originalScrollPosition);
     }
   } else {
     // If no hash, set the first section as active
@@ -267,6 +278,9 @@ function checkInitialHash() {
       // Prepare animations for first section
       prepareNewSectionAnimations(firstSection);
     }
+    
+    // Ensure we're at the top for fresh loads
+    window.scrollTo(0, 0);
   }
 }
 
@@ -280,11 +294,14 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
   
-  // Initialize page transitions
-  initializePageTransitions();
-  
-  // Check initial hash
-  checkInitialHash();
+  // Delay initialization slightly to prevent conflicts with other scripts
+  setTimeout(() => {
+    // Initialize page transitions
+    initializePageTransitions();
+    
+    // Check initial hash
+    checkInitialHash();
+  }, 100);
   
   // Add special transition for menu toggle
   const menubar = document.querySelector('.menubar');

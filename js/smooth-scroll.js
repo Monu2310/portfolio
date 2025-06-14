@@ -197,19 +197,21 @@ document.addEventListener('DOMContentLoaded', () => {
   const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
   const isLowPowerDevice = isMobile || window.innerWidth < 768 || navigator.hardwareConcurrency <= 4;
   
-  if (!isLowPowerDevice) {
-    // Only initialize for desktop/high-performance devices
+  // Disable smooth scroll if there are page transition conflicts
+  const hasPageTransitions = document.querySelector('.page-transition-overlay');
+  
+  if (!isLowPowerDevice && !hasPageTransitions) {
+    // Only initialize for desktop/high-performance devices without page transitions
     window.smoothScroll = new SmoothScroll({
       smoothFactor: 0.12, // Slightly higher for more responsive feel
     });
     
     // Make it available globally
     window.smoothScrollInstance = window.smoothScroll;
+    document.documentElement.classList.add('smooth-scroll');
   } else {
-    // Use native smooth scroll for lower power devices
+    // Use native smooth scroll for lower power devices or when page transitions are present
     document.documentElement.style.scrollBehavior = 'smooth';
+    document.documentElement.classList.add('native-scroll');
   }
-  
-  // Add class to html to indicate smooth scroll status
-  document.documentElement.classList.add(isLowPowerDevice ? 'native-scroll' : 'smooth-scroll');
 });

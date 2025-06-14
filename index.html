@@ -5,10 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mayank Monu - Personal Portfolio</title>
     <link rel="icon" type="image/png" href="images/favicon.png">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/index.css">    <link rel="stylesheet" href="css/animations.css">
     <!-- Added click effects CSS -->
     <link rel="stylesheet" href="css/click-effects.css">
+    <!-- Three.js 3D Effects CSS -->
+    <link rel="stylesheet" href="css/three-effects.css">
     <style>
         /* CSS Variables for theme colors */
         :root {
@@ -46,15 +47,50 @@
             z-index: 9998;
             pointer-events: none;
         }
-        
-        /* Active theme indicator */
+          /* Active theme indicator */
         .colors a.active-theme {
             transform: scale(1.2);
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
-    </style>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
+        
+        /* Prevent unwanted scrolling and layout shifts */
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+        
+        body {
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Prevent scroll restoration on page load */
+        .no-scroll-restore {
+            overflow: hidden;
+            height: 100vh;
+        }
+        
+        /* Ensure sections don't cause layout shifts */
+        .section-container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+        }
+        
+        /* Fix for smooth scroll conflicts */
+        .native-scroll {
+            scroll-behavior: smooth;
+        }
+        
+        .smooth-scroll {
+            scroll-behavior: auto;
+        }
+    </style>    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.6/gsap.min.js"></script>
     <script src="js/libs/anime.min.js"></script>
+    <!-- Three.js for 3D effects -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Load scroll prevention script early -->
+    <script src="js/scroll-prevention.js"></script>
 </head>
 <body>
 
@@ -100,6 +136,7 @@
             <div id="particles" data-framer-animate="fade"></div>
              
             <div class="social-media-links" data-animation="slideRight">
+                <a href="https://github.com/Monu2310" target="_blank"><img src="images/git logo.png" class="social-media" alt="twitter-logo"></a>
                <a href="https://www.facebook.com/mayank.monu2310/" target="_blank"><img src="images/facebook logo.png" class="social-media" alt="facebook-logo"></a>
                <a href="https://www.linkedin.com/in/mayank-monu-aa2333231/" target="_blank"><img src="images/linkedin logo.png" class="social-media" alt="linkedin-logo"></a>
                <a href="https://x.com/Mayankm30040263" target="_blank"><img src="images/twitter logo.png" class="social-media" alt="twitter-logo"></a>
@@ -110,7 +147,7 @@
                 <div class="firstline" data-framer-animate="fadeUp" data-framer-delay="200"><span class="color">Mayank </span>Monu </div>
                 <div class="secondline" data-framer-animate="fadeUp" data-framer-delay="400">
                 I'm a
-            <span class="txt-rotate color" data-period="1200"data-rotate='[ " Developer.", " Student.", " Freelancer." ]'></span>
+            <span class="txt-rotate color" data-period="1200"data-rotate='[ " FullStack Developer.", " Student.", " Freelancer." ]'></span>
             <span class="slash">|</span>
         </div>
                     <div class="contact" data-framer-animate="fadeUp" data-framer-delay="600">
@@ -168,12 +205,12 @@
 
                <span class="about-first-line">
                     I'm creative 
-                    <span class="color">web developer</span>
+                    <span class="color">FullStack Developer</span>
                      from Punjab, India. </span>
                      <br>
-               <span class="about-second-line"> Aspiring Frontend Developer | Student | Passionate About Crafting Engaging Web Experiences</span>
+               <span class="about-second-line"> Next.js Developer | Node.js Backend Explorer | Building Web Universes Where React Meets Express</span>
                <div class="cv">
-                <a href="Mayank_Monu_CV.pdf" target="_blank"><button>Download <span class="colors">CV</span></button></a>
+                <a href="Mayank_Monu_Resume.pdf" target="_blank"><button>Download <span class="colors">CV</span></button></a>
             </div>
             </div>
 
@@ -226,17 +263,17 @@
                                <img src="images/coding.png" alt="service-one">
                                </div>
                                <div class="service-description">
-                                <h2>Web Designing</h2>
-                                <p>A proficient Frontend Developer.</p>
+                                <h2>Full-Stack Web Application Development</h2>
+                                <p>Build powerful, end-to-end solutions using ReactJS, NodeJS, and MongoDB.</p>
                                </div>
                            </div>
                            <div class="service-two service wow" data-animation="serviceCard" data-framer-stagger-child data-framer-animate="fadeUp" data-framer-delay="200">
                                <div class="service-img">
-                               <img src="images/instagram.png" alt="service-two">
+                               <img src="images/api.png" alt="service-two">
                                </div>
                                <div class="service-description">
-                                <h2>Freelancer</h2>
-                                <p>Paid and free Designing and Development.</p>
+                                <h2>Backend API Development</h2>
+                                <p>Design secure RESTful APIs with NodeJS, ExpressJS, and JWT authentication.</p>
                                </div>
                            </div>
                            <div class="service-three service wow" data-animation="serviceCard" data-framer-stagger-child data-framer-animate="fadeUp" data-framer-delay="300">
@@ -244,8 +281,8 @@
                                <img src="images/bulb.png" alt="service-three">
                             </div>
                             <div class="service-description">
-                                <h2>Photography</h2>
-                                <p>Efficient photographer and editor</p>
+                                <h2>Single Page Applications (SPAs)</h2>
+                                <p>Build fast, dynamic, and interactive SPAs using ReactJS and NextJS.</p>
                             </div>
                         </div>
                     </div>
@@ -259,27 +296,27 @@
                     <div class="skill-html skill" data-animation="progressBar">
                         <div class="skill-text">
                     <div class="html">
-                        HTML/CSS
+                        HTML/CSS, JavaScript
                     </div>
                         </div>
                     <div class="html-prog wow prog">
-                 <div class="html-progress wow">95%</div>
+                 <div class="html-progress wow">90%</div>
                     </div>
                     </div>
                     <div class="skill-html skill" data-animation="progressBar">
                         <div class="skill-text">
                     <div class="html">
-                      Javascript
+                      ReactJS, NextJS
                     </div>
                         </div>
                     <div class="html-prog wow prog">
-                 <div class="js-progress wow">90%</div>
+                 <div class="js-progress wow">85%</div>
                     </div>
                     </div>
                     <div class="skill-html skill" data-animation="progressBar">
                         <div class="skill-text">
                     <div class="html">
-                        Adobe Ps
+                        NodeJS, ExpressJS
                     </div>
                         </div>
                     <div class="html-prog wow prog">
@@ -289,7 +326,7 @@
                     <div class="skill-html skill" data-animation="progressBar">
                         <div class="skill-text">
                     <div class="html">
-                        Bootstrap
+                        Framer Motion, Anime.js
                     </div>
                         </div>
                     <div class="html-prog wow prog">
@@ -299,17 +336,17 @@
                     <div class="skill-html skill" data-animation="progressBar">
                         <div class="skill-text">
                     <div class="html">
-                        React.JS
+                        Socket.io, Zod
                     </div>
                         </div>
                     <div class="html-prog wow prog">
-                 <div class="jquery-progress wow">64%</div>
+                 <div class="jquery-progress wow">75%</div>
                     </div>
                     </div>
                     <div class="skill-html skill" data-animation="progressBar">
                         <div class="skill-text">
                     <div class="html">
-                        Problem Solving
+                        RESTful APIs, JWT Authentication
                     </div>
                         </div>
                     <div class="html-prog wow prog">
@@ -353,9 +390,30 @@
             <div class="portfolio-header" data-animation="fadeIn"> <span class="color"> My </span> Portfolio
             <span class ="header-caption"> Some Of My <span class="color"> Works</span></span></div>
              <div id="portfolio-content" data-framer-stagger-parent="true">
-                 <div class="portfolio portfolio-first" data-animation="portfolioItem" data-framer-stagger-child data-framer-animate="scaleUp" data-framer-delay="100">
+                <div class="portfolio portfolio-first" data-animation="portfolioItem" data-framer-stagger-child data-framer-animate="scaleUp" data-framer-delay="100">
                     <div class="portfolio-image">
-                        <img src="images/portfolio-first.jpg" alt="portfolio-second">
+                        <img src="images/peer.jpg" alt="portfolio-second">
+                    </div>
+                    <div class="portfolio-text">
+                        <h2>PeerConnect - Campus Social Network</h2>
+                        <p>Tech Stack: ReactJS, NodeJS, TailwindCSS, Socket.io, MongoDB. <br>
+                        A comprehensive social platform designed for students to connect, communicate, and collaborate.</p>
+                        <div class="button"><a href="https://peer-connect-v1-cl.onrender.com/" target="_blank"><button><span class="index"> View Project<i class="gg-arrow-right"></i></span></button></a></div>
+                    </div>
+                </div>
+                <div class="portfolio portfolio-first" data-animation="portfolioItem" data-framer-stagger-child data-framer-animate="scaleUp" data-framer-delay="200">
+                    <div class="portfolio-image">
+                        <img src="images/invoice.jpg" alt="portfolio-second">
+                    </div>
+                    <div class="portfolio-text">
+                        <h2>Invoice Dashboard</h2>
+                        <p>A modern, full-stack invoice management system built with Next.js 15, MongoDB, and Express.js. <br>Manage customers, create invoices, track orders, handle transactions, and generate professional PDF documents with ease.</p>
+                        <div class="button"><a href="https://github.com/Monu2310/invoice-pro" target="_blank"><button><span class="index"> View Project<i class="gg-arrow-right"></i></span></button></a></div>
+                    </div>
+                </div>
+                <div class="portfolio portfolio-first" data-animation="portfolioItem" data-framer-stagger-child data-framer-animate="scaleUp" data-framer-delay="300">
+                    <div class="portfolio-image">
+                        <img src="images/weather.jpg" alt="portfolio-second">
                     </div>
                     <div class="portfolio-text">
                         <h2>Weather Website</h2>
@@ -363,7 +421,17 @@
                         <div class="button"><a href="https://weather-website-kohl.vercel.app/" target="_blank"><button><span class="index"> View Project<i class="gg-arrow-right"></i></span></button></a></div>
                     </div>
                 </div>
-                <div class="portfolio portfolio-second" data-animation="portfolioItem" data-framer-stagger-child data-framer-animate="scaleUp" data-framer-delay="200">
+                <div class="portfolio portfolio-first" data-animation="portfolioItem" data-framer-stagger-child data-framer-animate="scaleUp" data-framer-delay="350">
+                    <div class="portfolio-image">
+                        <img src="images/space.jpg" alt="portfolio-second">
+                    </div>
+                    <div class="portfolio-text">
+                        <h2>Solar System</h2>
+                        <p>An interactive 3D solar system visualization built with Three.js. <br>Explore planets and watch their orbital movements in your browser.</p>
+                        <div class="button"><a href="https://solar-three-js-five.vercel.app/" target="_blank"><button><span class="index"> View Project<i class="gg-arrow-right"></i></span></button></a></div>
+                    </div>
+                </div>
+                <div class="portfolio portfolio-second" data-animation="portfolioItem" data-framer-stagger-child data-framer-animate="scaleUp" data-framer-delay="400">
                     <div class="portfolio-image">
                        <img src="images/portfolio-second.jpg" alt="portfolio-first">
                     </div>
@@ -373,7 +441,7 @@
                         <div class="button"><a href="https://soda-pop-lake.vercel.app/" target="_blank"><button><span class="index"> View Project<i class="gg-arrow-right"></i></span></button></a></div>
                     </div>
                 </div>
-                <div class="portfolio portfolio-third" data-animation="portfolioItem" data-framer-stagger-child data-framer-animate="scaleUp" data-framer-delay="300">
+                <div class="portfolio portfolio-third" data-animation="portfolioItem" data-framer-stagger-child data-framer-animate="scaleUp" data-framer-delay="500">
                     <div class="portfolio-image">
                         <img src="images/portfolio-third.jpg" alt="portfolio-third">
                     </div>
@@ -383,9 +451,9 @@
                         <div class="button"><a href="https://mountains-slide-2310.vercel.app/" target="_blank"><button><span class="index"> View Project<i class="gg-arrow-right"></i></span></button></a></div>
                     </div>
                 </div>
-                <div class="portfolio portfolio-fourth" data-animation="portfolioItem" data-framer-stagger-child data-framer-animate="scaleUp" data-framer-delay="400">
+                <div class="portfolio portfolio-fourth" data-animation="portfolioItem" data-framer-stagger-child data-framer-animate="scaleUp" data-framer-delay="600">
                     <div class=" portfolio-image">
-                        <img src="images/portfolio-fourth.jpg" alt="portfolio-fourth">
+                        <img src="images/cloud.jpg" alt="portfolio-fourth">
                     </div>
                     <div class="portfolio-text">
                         <h2>Store It - Bharat vault</h2>
@@ -393,6 +461,17 @@
                         <div class="button"><a href="https://bharat-vault-r0ubul17p-mayank-monus-projects.vercel.app/" target="_blank"><button><span class="index"> View Project<i class="gg-arrow-right"></i></span></button></a></div>
                     </div>
                 </div>
+                <div class="portfolio portfolio-fourth" data-animation="portfolioItem" data-framer-stagger-child data-framer-animate="scaleUp" data-framer-delay="600">
+                    <div class=" portfolio-image">
+                        <img src="images/github.jpg" alt="portfolio-fourth">
+                    </div>
+                    <div class="portfolio-text">
+                        <h2>GitHub</h2>
+                        <p>View more projects in my GitHub repo.</p>
+                        <div class="button"><a href="https://github.com/Monu2310" target="_blank"><button><span class="index"> Open Link<i class="gg-arrow-right"></i></span></button></a></div>
+                    </div>
+                </div>
+
             </div>
         </div>
         <div id="contact" class="section-container" data-section-id="contact">
@@ -487,16 +566,26 @@
     <script src="js/index.js"></script>
     <script src="js/libs/framer-animations.js"></script>
     <script src="js/scroll-animations.js"></script>
-    <script src="js/smooth-scroll.js"></script>
-    <script src="js/enhanced-particles.js"></script>
+    <script src="js/smooth-scroll.js"></script>    <script src="js/enhanced-particles.js"></script>    <!-- Three.js 3D Effects -->
+    <script src="js/three-effects.js"></script>    <!-- Advanced 3D Interactive Effects -->
+    <script src="js/advanced-three-effects.js"></script>
+    <!-- Hero Section 3D Effects -->
+    <script src="js/hero-three-effects.js"></script>
     <!-- Add the page transitions script -->
     <script src="js/page-transitions.js"></script>
     <!-- Add the colors.js script -->
     <script src="js/colors.js"></script>
     <script>
   particlesJS("particles", {"particles":{"number":{"value":50,"density":{"enable":true,"value_area":800}},"color":{"value":"#ffffff"},"shape":{"type":"circle","stroke":{"width":0,"color":"#00000"},"polygon":{"nb_sides":5},"image":{"src":"img/github.svg","width":100,"height":100}},"opacity":{"value":0.5,"random":false,"anim":{"enable":false,"speed":1,"opacity_min":0.1,"sync":false}},"size":{"value":3,"random":true,"anim":{"enable":false,"speed":40,"size_min":0.1,"sync":false}},"line_linked":{"enable":true,"distance":150,"color":"#ffffff","opacity":0.4,"width":1},"move":{"enable":true,"speed":6,"direction":"none","random":false,"straight":false,"out_mode":"out","bounce":false,"attract":{"enable":false,"rotateX":600,"rotateY":1200}}},"interactivity":{"detect_on":"canvas","events":{"onhover":{"enable":true,"mode":"repulse"},"onclick":{"enable":true,"mode":"push"},"resize":true},"modes":{"grab":{"distance":400,"line_linked":{"opacity":1}},"bubble":{"distance":400,"size":40,"duration":2,"opacity":8,"speed":3},"repulse":{"distance":200,"duration":0.4},"push":{"particles_nb":4},"remove":{"particles_nb":2}}},"retina_detect":true});
-
   document.addEventListener('DOMContentLoaded', function() {
+      // Prevent automatic scrolling on page load
+      if (window.history && window.history.scrollRestoration) {
+          window.history.scrollRestoration = 'manual';
+      }
+      
+      // Ensure we start at the top of the page
+      window.scrollTo(0, 0);
+      
       const scrollIndicator = document.querySelector('.scroll-indicator');
       
       window.addEventListener('scroll', function() {
@@ -516,6 +605,19 @@
       document.querySelectorAll('.section-container').forEach(section => {
           section.id = section.dataset.sectionId;
       });
+      
+      // Prevent hash-based scrolling conflicts
+      const currentHash = window.location.hash;
+      if (currentHash) {
+          // Clear the hash temporarily to prevent automatic scrolling
+          window.location.hash = '';
+          // Restore it after a short delay
+          setTimeout(() => {
+              if (history.replaceState) {
+                  history.replaceState(null, null, currentHash);
+              }
+          }, 100);
+      }
   });
     </script>
 

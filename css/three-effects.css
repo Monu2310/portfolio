@@ -1,0 +1,254 @@
+/* Three.js 3D Effects Styling */
+
+/* Ensure 3D canvas elements don't interfere with interactions */
+.three-canvas {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Portfolio cards 3D enhancement */
+.portfolio-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-image:hover {
+    transform: translateZ(10px) rotateX(5deg) rotateY(5deg);
+    transform-style: preserve-3d;
+}
+
+/* Skills section 3D visualization */
+#skills {
+    position: relative;
+    perspective: 1000px;
+}
+
+.skill {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+}
+
+.skill:hover {
+    transform: translateZ(20px) rotateX(10deg);
+}
+
+/* Contact form 3D enhancements */
+.contact-form {
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.contact-form input,
+.contact-form textarea {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    transform: translateZ(5px);
+    box-shadow: 0 10px 20px rgba(255, 42, 117, 0.3);
+}
+
+/* Service cards 3D effects */
+.service {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+    overflow: hidden;
+}
+
+.service:hover {
+    transform: translateZ(15px) rotateX(5deg) rotateY(5deg);
+}
+
+.service::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, transparent, rgba(255, 42, 117, 0.1), transparent);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.service:hover::before {
+    opacity: 1;
+}
+
+/* Button 3D effects */
+.button button {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow: hidden;
+}
+
+.button button:hover {
+    transform: translateZ(8px) rotateX(5deg);
+    box-shadow: 0 15px 30px rgba(255, 42, 117, 0.4);
+}
+
+.button button::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+.button button:hover::after {
+    left: 100%;
+}
+
+/* Header 3D parallax */
+#header {
+    position: relative;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+}
+
+.header-content {
+    transform-style: preserve-3d;
+}
+
+.header-image {
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+}
+
+/* About section 3D effects */
+.about-img {
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.3s ease;
+}
+
+.about-img:hover {
+    transform: translateZ(10px) rotateY(5deg);
+}
+
+.about-img img {
+    transition: transform 0.3s ease;
+}
+
+.about-img:hover img {
+    transform: scale(1.05);
+}
+
+/* Particle container enhancements */
+#particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Responsive 3D effects */
+@media (max-width: 768px) {
+    /* Reduce 3D effects on mobile for performance */
+    .portfolio-image:hover,
+    .skill:hover,
+    .service:hover,
+    .button button:hover,
+    .about-img:hover {
+        transform: translateZ(5px);
+    }
+    
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+        transform: translateZ(2px);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    /* Disable 3D effects for users who prefer reduced motion */
+    .portfolio-image:hover,
+    .skill:hover,
+    .service:hover,
+    .button button:hover,
+    .about-img:hover,
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+        transform: none;
+    }
+}
+
+/* Special loading animation for 3D elements */
+.three-loading {
+    position: relative;
+    overflow: hidden;
+}
+
+.three-loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    animation: threeLoading 2s ease-in-out infinite;
+}
+
+@keyframes threeLoading {
+    0% {
+        left: -100%;
+    }
+    100% {
+        left: 100%;
+    }
+}
+
+/* Depth layers for better 3D perception */
+.depth-layer-1 {
+    z-index: 1;
+}
+
+.depth-layer-2 {
+    z-index: 2;
+}
+
+.depth-layer-3 {
+    z-index: 3;
+}
+
+/* Glow effects for 3D elements */
+.three-glow {
+    position: relative;
+}
+
+.three-glow::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #ff2a75, #f44336, #ff9e80, #00bcd4);
+    border-radius: inherit;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    filter: blur(10px);
+}
+
+.three-glow:hover::after {
+    opacity: 0.7;
+}
