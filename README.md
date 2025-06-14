@@ -11,6 +11,7 @@ A cutting-edge, responsive personal portfolio website showcasing my skills, proj
 ## ✨ Features
 
 ### 🎆 **3D Effects & Animations**
+
 - **Three.js Integration**: Immersive 3D background with floating geometric shapes
 - **Interactive Particle Systems**: Dynamic particle effects that respond to mouse movement
 - **3D Portfolio Cards**: Each project showcases its own mini 3D scene
@@ -19,6 +20,7 @@ A cutting-edge, responsive personal portfolio website showcasing my skills, proj
 - **Contact Form Effects**: Floating shapes that respond to form interactions
 
 ### 🎨 **Visual Excellence**
+
 - **Responsive Design**: Fully responsive layout that works on all devices
 - **Performance Optimized**: Adaptive effects based on device capabilities
 - **Smooth Animations**: GSAP and Anime.js powered transitions
@@ -26,6 +28,7 @@ A cutting-edge, responsive personal portfolio website showcasing my skills, proj
 - **Interactive UI Elements**: Hover effects, click animations, and 3D transforms
 
 ### 🛠 **Technical Features**
+
 - **WebGL Detection**: Automatic fallback for unsupported devices
 - **Scroll Prevention**: Smooth page loading without unwanted scrolling
 - **Progressive Enhancement**: Reduced effects on low-power devices
@@ -35,6 +38,7 @@ A cutting-edge, responsive personal portfolio website showcasing my skills, proj
 ## 🚀 Technologies Used
 
 ### **Frontend**
+
 - HTML5, CSS3, JavaScript (ES6+)
 - Three.js (r128) for 3D graphics and WebGL
 - GSAP for advanced animations
@@ -42,6 +46,7 @@ A cutting-edge, responsive personal portfolio website showcasing my skills, proj
 - Particles.js for background effects
 
 ### **Performance & Optimization**
+
 - Intersection Observer API for scroll-triggered animations
 - RequestAnimationFrame for smooth 60fps animations
 - WebGL shaders for particle effects
@@ -51,18 +56,21 @@ A cutting-edge, responsive personal portfolio website showcasing my skills, proj
 ## 📊 Performance Optimizations
 
 ### **Device Adaptation**
+
 - Automatic detection of mobile devices and low-power hardware
 - Reduced particle count and geometry complexity on mobile
 - WebGL capability detection with graceful fallbacks
 - Adaptive frame rates based on device capabilities
 
 ### **Memory Management**
+
 - Efficient geometry and material disposal
 - Resource cleanup on page unload
 - Optimized shader programs for better GPU utilization
 - Animation queuing to prevent performance bottlenecks
 
 ### **User Experience**
+
 - Smooth scroll prevention during page load
 - Progressive loading of 3D effects
 - Reduced motion support for accessibility
@@ -101,18 +109,21 @@ portfolio/
 ## 🎮 Interactive Features
 
 ### **Mouse Interactions**
+
 - Camera follows mouse movement smoothly
 - 3D objects react to mouse proximity
 - Interactive particle systems respond to cursor position
 - Click effects create particle explosions
 
 ### **Section-Based Effects**
+
 - Dynamic color schemes for each section
 - Smooth transitions between effect themes
 - Adaptive lighting based on current section
 - Progressive enhancement of visual elements
 
 ### **Performance Features**
+
 - Real-time FPS monitoring and adjustment
 - Automatic quality scaling based on performance
 - Memory usage optimization
@@ -121,12 +132,14 @@ portfolio/
 ## 🌐 Browser Support
 
 **Fully Compatible:**
+
 - Chrome 60+
 - Firefox 55+
 - Safari 12+
 - Edge 79+
 
 **3D Effects Support:**
+
 - Requires WebGL support
 - Automatic fallback to 2D effects on unsupported browsers
 - Progressive enhancement ensures basic functionality on all browsers
@@ -134,6 +147,7 @@ portfolio/
 ## 🚀 Local Development
 
 ### **Quick Start**
+
 1. Clone the repository
    ```bash
    git clone https://github.com/Monu2310/portfolio.git
@@ -143,18 +157,21 @@ portfolio/
    cd portfolio
    ```
 3. Start a local development server
+
    ```bash
    # Using Python
    python3 -m http.server 8000
-   
+
    # Using Node.js
    npx serve .
-   
+
    # Or simply open index.html in your browser
    ```
+
 4. Open your browser and navigate to `http://localhost:8000`
 
 ### **Development Tips**
+
 - Use browser developer tools to monitor WebGL performance
 - Test on different devices to ensure optimal performance
 - Check console for any 3D effect warnings or fallbacks
@@ -179,14 +196,16 @@ portfolio/
 ## 🛠 Customization
 
 ### **Color Themes**
+
 - Six pre-built color themes available
 - Easy theme switching via settings panel
 - Smooth transitions between themes
 - 3D effects adapt to selected theme
 
 ### **3D Effect Settings**
+
 - Particle density adjustment
-- Geometry complexity settings  
+- Geometry complexity settings
 - Animation speed controls
 - Performance mode toggles
 
